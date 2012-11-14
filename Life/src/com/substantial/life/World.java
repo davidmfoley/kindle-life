@@ -91,7 +91,7 @@ public class World {
 		ArrayList<Location> nextGeneration = new ArrayList<Location>();
 		HashMap<Location, Integer> touchedCells = new HashMap<Location, Integer>();
 		// TODO Auto-generated method stub
-		for (Location aliveCell : aliveCells) {
+		for (Location aliveCell : (ArrayList<Location>)aliveCells.clone()) {
 			touchNeighbors(touchedCells, aliveCell);
 		}
 		for (Location touchedCell : touchedCells.keySet()) {
