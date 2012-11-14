@@ -5,3 +5,4 @@ gen/
 *.ap_
 *.dex
 local.properties
+.metadata
