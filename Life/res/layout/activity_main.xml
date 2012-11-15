@@ -3,18 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".MainActivity" />
+        android:orientation="vertical" >
 
-    <com.substantial.life.WorldView
-        android:id="@+id/worldView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <com.substantial.life.WorldView
+            android:id="@+id/worldView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:layout_weight="8" 
+            />
+
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" 
+            >
+            <Button
+          	  	android:layout_weight="1"          
+                android:id="@+id/stopStart"
+             	android:text="Stop/Start"
+             	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+                />
+            <Button
+          	  	android:layout_weight="1"          
+                android:id="@+id/zoomAllTheWayOut"
+             	android:text="All the way out"
+             	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+                />
+            <Button
+          	  	android:layout_weight="1"          
+                android:id="@+id/zoomOut"
+             	android:text="Zoom Out"
+             	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+                />
+            <Button
+          	  	android:layout_weight="1"          
+                android:id="@+id/zoomIn"
+             	android:text="Zoom In"
+             	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+                />
+            </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

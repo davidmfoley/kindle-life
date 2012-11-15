@@ -13,8 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class WorldView extends ImageView {
-	final int CELL_WIDTH = 60;
-	final int CELL_HEIGHT = 60;
+	int cellWidth = 64;
+	int cellHeight = 64;
 
 	private World world;
 
@@ -38,8 +38,8 @@ public class WorldView extends ImageView {
 		this.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View view, MotionEvent motionEvent) {
 				if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-					int x = (int)motionEvent.getX() / CELL_WIDTH;
-					int y = (int)motionEvent.getY() / CELL_HEIGHT;
+					int x = (int)motionEvent.getX() / cellWidth;
+					int y = (int)motionEvent.getY() / cellHeight;
 					
 					Log.d("X",  "" + x);
 					Log.d("Y",  "" + y);
@@ -74,8 +74,25 @@ public class WorldView extends ImageView {
 
 	private Rect getRectForCell(Location aliveCell) {
 		
-		int left = aliveCell.x * CELL_WIDTH;
-		int top= aliveCell.y * CELL_HEIGHT;
-		return new Rect(left, top, left + CELL_WIDTH, top + CELL_HEIGHT);
+		int left = aliveCell.x * cellWidth;
+		int top= aliveCell.y * cellHeight;
+		return new Rect(left, top, left + cellWidth, top + cellHeight);
+	}
+
+	public void zoomToFitAll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void zoomIn() {
+		// TODO Auto-generated method stub
+		cellWidth = cellWidth * 2;
+		cellHeight = cellHeight * 2;
+	}
+
+	public void zoomOut() {
+		// TODO Auto-generated method stub
+		cellWidth = cellWidth / 2;
+		cellHeight = cellHeight / 2;
 	}
 }

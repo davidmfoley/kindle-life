@@ -4,7 +4,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity {
 
@@ -19,23 +22,54 @@ public class MainActivity extends Activity {
 
         world = new World();
         
-        world.toggle(11,11);
-        world.toggle(12,11);
-        world.toggle(13,11);
-                
-        
         worldView = (WorldView) findViewById(R.id.worldView);
     	worldView.setWorld(world);
     	
     	world.setOnChangeHandler(new Runnable(){
 			public void run() {
-				MainActivity.this.runOnUiThread(new Runnable(){
-					public void run() {
-						MainActivity.this.worldView.invalidate();
-					}});
+				MainActivity.this.refreshWorldView();
 			}});
     	
-    	timer = new Timer();
+    	
+    	bindButton(R.id.stopStart, new OnClickListener(){
+			public void onClick(View arg0) {
+				if (timer != null) {
+					timer.cancel();
+					timer = null;
+				}
+				else {
+					startTimer();
+				}
+			}});
+    	
+    	bindButton(R.id.zoomAllTheWayOut, new OnClickListener(){
+			public void onClick(View arg0) {
+				MainActivity.this.worldView.zoomToFitAll();
+				MainActivity.this.refreshWorldView();
+			}});
+
+    	bindButton(R.id.zoomIn, new OnClickListener(){
+			public void onClick(View arg0) {
+				MainActivity.this.worldView.zoomIn();
+				MainActivity.this.refreshWorldView();
+			}});
+    	
+    	bindButton(R.id.zoomOut, new OnClickListener(){
+			public void onClick(View arg0) {
+				MainActivity.this.worldView.zoomOut();
+				MainActivity.this.refreshWorldView();
+			}});
+    }
+	
+	protected void refreshWorldView() {
+		runOnUiThread(new Runnable(){
+			public void run() {
+				MainActivity.this.worldView.invalidate();
+			}});
+	}
+	
+	private void startTimer() {
+		timer = new Timer();
     	TimerTask task = new TimerTask() {
 
 			@Override
@@ -45,9 +79,14 @@ public class MainActivity extends Activity {
 				
 			}};
     	timer.scheduleAtFixedRate(task, 500, 500);
-    }
+	}
 
-    protected void nextFrame() {
+    private void bindButton(int id, OnClickListener listener) {
+    	View view = findViewById(id);
+    	view.setOnClickListener(listener);
+	}
+
+	protected void nextFrame() {
     	
     	
     	
