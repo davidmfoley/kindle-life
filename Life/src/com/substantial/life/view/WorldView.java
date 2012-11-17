@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.substantial.life.engine.Location;
 import com.substantial.life.engine.World;
+import com.substantial.life.view.WorldTouchHandler.TouchActionHandler;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -45,15 +46,14 @@ public class WorldView extends ImageView {
 		renderLayers.add(new WorldViewLayer.Cells(world, gridViewRect));
 		renderLayers.add(new WorldViewLayer.TurnCounter(world));
 		
-		this.setOnTouchListener(new OnTouchListener() {
-			public boolean onTouch(View view, MotionEvent motionEvent) {
-				if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-					Location cellAtPoint = gridViewRect.cellAt((int)motionEvent.getX(), (int)motionEvent.getY());
-					
-					WorldView.this.world.toggle(cellAtPoint);
-				}
-				return false;
-			}});
+		WorldTouchHandler touchHandler = new WorldTouchHandler(new TouchActionHandler() {
+			public void onTap(int x, int y) {
+				Location cellAtPoint = gridViewRect.cellAt(x, y);			
+				WorldView.this.world.toggle(cellAtPoint);
+			}
+		});
+		
+		this.setOnTouchListener(touchHandler);
 	}
 
 	@Override
