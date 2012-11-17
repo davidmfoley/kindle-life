@@ -45,7 +45,9 @@ public class GridViewRect {
 	private int translateScreenToWorld(int position, int size, float center) {
 		float offsetFromCenter = ((float)position - ((float)size / 2));
 		float scaledOffset = (offsetFromCenter / zoomFactor);
-		
-		return (int) (scaledOffset + center); 
+		float rawWorldPosition = (scaledOffset + center);
+		if (rawWorldPosition < 0)
+			return (int) (rawWorldPosition - 0.99);
+		return (int) rawWorldPosition;
 	}
 }

@@ -4,7 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;

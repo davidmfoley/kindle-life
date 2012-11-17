@@ -13,19 +13,16 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class WorldView extends ImageView {
-	int cellWidth = 64;
-	int cellHeight = 64;
-
 	private World world;
+	private GridViewRect gridViewRect;
+	private int zoomLevel = 64;
 
 	public WorldView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		// TODO Auto-generated constructor stub
 	}
 
 	public WorldView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 	}
 
 	public WorldView(Context context) {
@@ -34,30 +31,38 @@ public class WorldView extends ImageView {
 	
 	public void setWorld(World world) {
 		this.world = world;
+		gridViewRect = new GridViewRect();
+		gridViewRect.setZoom(64);
+		gridViewRect.setCenterCell(0, 0);
+		
 		
 		this.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View view, MotionEvent motionEvent) {
 				if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-					int x = (int)motionEvent.getX() / cellWidth;
-					int y = (int)motionEvent.getY() / cellHeight;
+					Location cellAtPoint = gridViewRect.cellAt((int)motionEvent.getX(), (int)motionEvent.getY());
 					
-					Log.d("X",  "" + x);
-					Log.d("Y",  "" + y);
-					WorldView.this.world.toggle(x, y);
+					WorldView.this.world.toggle(cellAtPoint);
 				}
-				// TODO Auto-generated method stub
 				return false;
 			}});
 	}
-	
-	
 
 	@Override
 	public void onDraw(Canvas canvas) {
 		Paint paint = new Paint();
+		gridViewRect.setViewSize(this.getWidth(), this.getHeight());
+		
 		paint.setARGB(255, 245, 240, 220);
 		Rect wholeScreen = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
 		canvas.drawRect(wholeScreen, paint);
+		
+		paint.setARGB(255, 200, 180, 200);
+		paint.setStrokeWidth(1);
+		
+		CellRect origin = gridViewRect.getCellRect(0, 0);
+		
+		canvas.drawLine(0, origin.top, getWidth(), origin.top, paint);
+		canvas.drawLine(origin.left, 0, origin.left, getHeight(), paint);
 		
 		for (Location aliveCell : world.getAliveCells()) {
 			paint.setARGB(255, 154, 86, 220);
@@ -68,31 +73,24 @@ public class WorldView extends ImageView {
 	}
 
 	private boolean isOnScreen(Rect rect) {
-		// TODO Auto-generated method stub
-		return true;
+		return rect.intersects(0, 0, getWidth(), getHeight());
 	}
 
 	private Rect getRectForCell(Location aliveCell) {
+		CellRect cellRect = gridViewRect.getCellRect(aliveCell.x, aliveCell.y);
 		
-		int left = aliveCell.x * cellWidth;
-		int top = aliveCell.y * cellHeight;
-		return new Rect(left, top, left + cellWidth, top + cellHeight);
+		return new Rect(cellRect.left, cellRect.top, cellRect.right, cellRect.bottom);
 	}
 
 	public void zoomToFitAll() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void zoomIn() {
-		// TODO Auto-generated method stub
-		cellWidth = cellWidth * 2;
-		cellHeight = cellHeight * 2;
+		gridViewRect.setZoom(zoomLevel *= 2);
 	}
 
 	public void zoomOut() {
-		// TODO Auto-generated method stub
-		cellWidth = cellWidth / 2;
-		cellHeight = cellHeight / 2;
+		gridViewRect.setZoom(zoomLevel /= 2);
 	}
 }

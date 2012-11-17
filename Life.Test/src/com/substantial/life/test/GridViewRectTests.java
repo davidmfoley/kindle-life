@@ -55,6 +55,16 @@ public class GridViewRectTests extends TestCase {
 		assertEquals(24, bottomRight.getY().intValue());
 	}
 	
+	public void testZoomedInNegativeQuadrants() {
+		
+		setUpWorldView(300, 200, 0, 0, 10f);
+		
+		Location negativeQuadrantLocation = gridViewRect.cellAt(145, 95);
+		
+		assertEquals(-1, negativeQuadrantLocation.getX().intValue());
+		assertEquals(-1, negativeQuadrantLocation.getY().intValue());
+	}
+	
 	public void testAwayFromOriginTopLeft() {
 
 		setUpWorldView(4, 6, 12, 3, 1.0f);

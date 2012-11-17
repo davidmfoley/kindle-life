@@ -1,7 +1,5 @@
 package com.substantial.life;
 
-import java.util.ArrayList;
-
 public abstract class LocationBase<T extends Number> {
 	T x;
 	T y;

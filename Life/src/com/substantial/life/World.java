@@ -19,11 +19,7 @@ public class World {
 	
 	public void toggle(int x, int y) {
 		Location location = new Location(x, y);
-		if (!isAlive(x, y))
-			aliveCells.add(location);
-		else
-			aliveCells.remove(location);
-		onChangeHandler.run();
+		toggle(location);
 	}
 	
 	public void set(int x, int y, boolean alive) {
@@ -35,7 +31,7 @@ public class World {
 	public boolean isAlive(int x, int y) {
 		return aliveCells.contains(new Location(x,y));
 	}
-
+	
 	public void evolve() {
 		HashMap<Location, Integer> touchedCells = new HashMap<Location, Integer>();
 		
@@ -73,6 +69,20 @@ public class World {
 	public void setOnChangeHandler(Runnable runnable) {
 		// TODO Auto-generated method stub
 		onChangeHandler = runnable;
+	}
+
+	public void toggle(Location location) {
+		// TODO Auto-generated method stub
+		if (!isAlive(location))
+			aliveCells.add(location);
+		else
+			aliveCells.remove(location);
+		onChangeHandler.run();
+	}
+
+	private boolean isAlive(Location location) {
+		// TODO Auto-generated method stub
+		return aliveCells.contains(location);
 	}
 	
 	
