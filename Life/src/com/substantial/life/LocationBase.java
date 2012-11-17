@@ -1,8 +1,8 @@
 package com.substantial.life;
 
 public abstract class LocationBase<T extends Number> {
-	T x;
-	T y;
+	public T x;
+	public T y;
 	
 	public LocationBase(T x, T y) {
 		this.x = x;
