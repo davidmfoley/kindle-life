@@ -1,6 +1,6 @@
 package com.substantial.life;
 
-import com.substantial.life.World.Location;
+import com.substantial.life.Location;
 
 import android.content.Context;
 import android.graphics.Canvas;

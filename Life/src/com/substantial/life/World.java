@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.substantial.life.World.Location;
+import com.substantial.life.Location;
 
 public class World {
 	ArrayList<Location> aliveCells;
@@ -75,53 +75,5 @@ public class World {
 		onChangeHandler = runnable;
 	}
 	
-	public class Location {
-		int x;
-		int y;
-		public Location(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + getOuterType().hashCode();
-			result = prime * result + x;
-			result = prime * result + y;
-			return result;
-		}
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Location other = (Location) obj;
-			if (!getOuterType().equals(other.getOuterType()))
-				return false;
-			return x == other.x && y == other.y;			
-		}
-		
-		private World getOuterType() {
-			return World.this;
-		}
-		public ArrayList<Location> getNeighbors() {
-			// TODO Auto-generated method stub
-			ArrayList<Location> locations = new ArrayList<Location>();
-			
-			locations.add(new Location(x-1, y-1));
-			locations.add(new Location(x, y-1));
-			locations.add(new Location(x+1, y-1));
-			locations.add(new Location(x-1, y));
-			locations.add(new Location(x+1, y));
-			locations.add(new Location(x-1, y+1));
-			locations.add(new Location(x, y+1));
-			locations.add(new Location(x+1, y+1));
-			
-			return locations;
-		}
-	}
+	
 }

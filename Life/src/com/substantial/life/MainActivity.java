@@ -74,7 +74,6 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				MainActivity.this.world.evolve();
 				
 			}};
@@ -84,14 +83,6 @@ public class MainActivity extends Activity {
     private void bindButton(int id, OnClickListener listener) {
     	View view = findViewById(id);
     	view.setOnClickListener(listener);
-	}
-
-	protected void nextFrame() {
-    	
-    	
-    	
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
