@@ -75,7 +75,7 @@ public class WorldView extends ImageView {
 	private Rect getRectForCell(Location aliveCell) {
 		
 		int left = aliveCell.x * cellWidth;
-		int top= aliveCell.y * cellHeight;
+		int top = aliveCell.y * cellHeight;
 		return new Rect(left, top, left + cellWidth, top + cellHeight);
 	}
 
