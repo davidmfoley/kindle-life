@@ -1,4 +1,4 @@
-package com.substantial.life;
+package com.substantial.life.engine;
 
 public abstract class LocationBase<T extends Number> {
 	public T x;

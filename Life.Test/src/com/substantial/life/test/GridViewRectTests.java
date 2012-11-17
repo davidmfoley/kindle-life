@@ -1,8 +1,8 @@
 package com.substantial.life.test;
 
-import com.substantial.life.CellRect;
-import com.substantial.life.GridViewRect;
-import com.substantial.life.Location;
+import com.substantial.life.engine.CellRect;
+import com.substantial.life.engine.Location;
+import com.substantial.life.view.GridViewRect;
 
 import junit.framework.TestCase;
 

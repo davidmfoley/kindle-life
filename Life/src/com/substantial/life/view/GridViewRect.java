@@ -1,7 +1,8 @@
-package com.substantial.life;
+package com.substantial.life.view;
 
-import com.substantial.life.Location;
-import com.substantial.life.LocationF;
+import com.substantial.life.engine.CellRect;
+import com.substantial.life.engine.Location;
+import com.substantial.life.engine.LocationF;
 
 public class GridViewRect {
 

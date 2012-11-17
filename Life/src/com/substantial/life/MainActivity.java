@@ -2,6 +2,10 @@ package com.substantial.life;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.substantial.life.engine.World;
+import com.substantial.life.view.WorldView;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;

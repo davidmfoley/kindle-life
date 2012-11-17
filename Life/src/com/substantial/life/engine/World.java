@@ -1,14 +1,14 @@
-package com.substantial.life;
+package com.substantial.life.engine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.substantial.life.Location;
 
 public class World {
 	ArrayList<Location> aliveCells;
 	private Runnable onChangeHandler;
+	private int generation = 0;
 
 	public World() {
 		aliveCells = new ArrayList<Location>();
@@ -48,6 +48,7 @@ public class World {
 				nextGeneration.add(touchedCell);
 		}
 		aliveCells = nextGeneration;
+		generation++;
 		onChangeHandler.run();
 	}
 
@@ -84,6 +85,9 @@ public class World {
 		// TODO Auto-generated method stub
 		return aliveCells.contains(location);
 	}
-	
-	
+
+	public int getGeneration() {
+		// TODO Auto-generated method stub
+		return generation;
+	}
 }

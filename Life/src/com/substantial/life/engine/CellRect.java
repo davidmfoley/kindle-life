@@ -1,4 +1,4 @@
-package com.substantial.life;
+package com.substantial.life.engine;
 
 public class CellRect {
 

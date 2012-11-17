@@ -1,6 +1,6 @@
 package com.substantial.life.test;
 
-import com.substantial.life.World;
+import com.substantial.life.engine.World;
 
 import junit.framework.TestCase;
 

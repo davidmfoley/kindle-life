@@ -1,9 +1,10 @@
-package com.substantial.life;
+package com.substantial.life.view;
 
 import java.util.ArrayList;
 
-import com.substantial.life.Location;
-import com.substantial.life.view.WorldViewLayer;
+import com.substantial.life.engine.Location;
+import com.substantial.life.engine.World;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -42,6 +43,7 @@ public class WorldView extends ImageView {
 		renderLayers.add(new WorldViewLayer.Background());
 		renderLayers.add(new WorldViewLayer.OriginTarget(gridViewRect));
 		renderLayers.add(new WorldViewLayer.Cells(world, gridViewRect));
+		renderLayers.add(new WorldViewLayer.TurnCounter(world));
 		
 		this.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -60,12 +62,8 @@ public class WorldView extends ImageView {
 
 		for (WorldViewLayer layer : renderLayers) {
 			layer.render(canvas);
-		}
-
-		
+		}	
 	}
-
-
 	
 	public void zoomToFitAll() {
 		
