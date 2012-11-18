@@ -16,7 +16,7 @@ public class GridViewRect {
 	}
 
 	public void setCenterCell(float x, float y) {
-		
+
 		centerCell = new LocationF(x, y);
 	}
 
@@ -29,7 +29,7 @@ public class GridViewRect {
 		int translatedY = translateScreenToWorld(y, viewSize.y, centerCell.y);
 		return new Location(translatedX, translatedY);
 	}
-	
+
 	public CellRect getCellRect(int x, int y) {
 		int translatedX = translateWorldToScreen(x, viewSize.x, centerCell.x);
 		int translatedY = translateWorldToScreen(y, viewSize.y, centerCell.y);
@@ -39,13 +39,13 @@ public class GridViewRect {
 	}
 
 	private int translateWorldToScreen(int position, int size, float center) {
-		float offsetFromCenter = (float)position - center;
+		float offsetFromCenter = position - center;
 		int scaledOffset = (int) (offsetFromCenter * zoomFactor);
 		return scaledOffset + (size / 2);
 	}
 
 	private int translateScreenToWorld(int position, int size, float center) {
-		float offsetFromCenter = ((float)position - ((float)size / 2));
+		float offsetFromCenter = (position - ((float)size / 2));
 		float scaledOffset = (offsetFromCenter / zoomFactor);
 		float rawWorldPosition = (scaledOffset + center);
 		if (rawWorldPosition < 0)

@@ -2,7 +2,7 @@ package com.substantial.life.engine;
 import java.util.ArrayList;
 
 
-public class Location extends LocationBase<Integer> 
+public class Location extends LocationBase<Integer>
 {
 	public Location(Integer x, Integer y) {
 		super(x, y);		// TODO Auto-generated constructor stub
@@ -10,7 +10,7 @@ public class Location extends LocationBase<Integer>
 
 	public ArrayList<Location> getNeighbors() {
 		ArrayList<Location> locations = new ArrayList<Location>();
-		
+
 		locations.add(new Location(x-1, y-1));
 		locations.add(new Location(x, y-1));
 		locations.add(new Location(x+1, y-1));
@@ -19,7 +19,7 @@ public class Location extends LocationBase<Integer>
 		locations.add(new Location(x-1, y+1));
 		locations.add(new Location(x, y+1));
 		locations.add(new Location(x+1, y+1));
-		
+
 		return locations;
 	}
 }

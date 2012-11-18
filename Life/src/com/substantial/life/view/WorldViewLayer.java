@@ -1,12 +1,12 @@
 package com.substantial.life.view;
 
-import com.substantial.life.engine.CellRect;
-import com.substantial.life.engine.Location;
-import com.substantial.life.engine.World;
-
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import com.substantial.life.engine.CellRect;
+import com.substantial.life.engine.Location;
+import com.substantial.life.engine.World;
 
 public interface WorldViewLayer {
 
@@ -23,8 +23,8 @@ public interface WorldViewLayer {
 	}
 
 	public class OriginTarget implements WorldViewLayer {
-		private GridViewRect gridViewRect;
-		private Paint paint;
+		private final GridViewRect gridViewRect;
+		private final Paint paint;
 
 		public OriginTarget(GridViewRect gridViewRect) {
 			this.gridViewRect = gridViewRect;
@@ -43,9 +43,9 @@ public interface WorldViewLayer {
 	}
 
 	public class Cells implements WorldViewLayer {
-		private GridViewRect gridViewRect;
-		private World world;
-		private Paint paint;
+		private final GridViewRect gridViewRect;
+		private final World world;
+		private final Paint paint;
 
 		public Cells(World world, GridViewRect gridViewRect) {
 			this.paint = new Paint();
@@ -62,7 +62,7 @@ public interface WorldViewLayer {
 				Rect rect = getRectForCell(aliveCell);
 				if (rect.intersect(canvasRect))
 					canvas.drawRect(rect, paint);
-			}		
+			}
 		}
 
 		private Rect getRectForCell(Location aliveCell) {
@@ -71,11 +71,11 @@ public interface WorldViewLayer {
 			return new Rect(cellRect.left, cellRect.top, cellRect.right, cellRect.bottom);
 		}
 
-		
+
 	}
 	public class TurnCounter implements WorldViewLayer {
-		private World world;
-		private Paint paint;
+		private final World world;
+		private final Paint paint;
 
 		public TurnCounter(World world) {
 			this.paint = new Paint();

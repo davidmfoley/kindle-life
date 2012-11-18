@@ -3,14 +3,14 @@ package com.substantial.life;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.substantial.life.engine.World;
-import com.substantial.life.view.WorldView;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import com.substantial.life.engine.World;
+import com.substantial.life.view.WorldView;
 
 public class MainActivity extends Activity {
 
@@ -21,19 +21,19 @@ public class MainActivity extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);	
+        setContentView(R.layout.activity_main);
 
         world = new World();
-        
+
         worldView = (WorldView) findViewById(R.id.worldView);
     	worldView.setWorld(world);
-    	
+
     	world.setOnChangeHandler(new Runnable(){
 			public void run() {
 				MainActivity.this.refreshWorldView();
 			}});
-    	
-    	
+
+
     	bindButton(R.id.stopStart, new OnClickListener(){
 			public void onClick(View arg0) {
 				if (timer != null) {
@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
 					startTimer();
 				}
 			}});
-    	
+
     	bindButton(R.id.zoomAllTheWayOut, new OnClickListener(){
 			public void onClick(View arg0) {
 				MainActivity.this.worldView.zoomToFitAll();
@@ -56,21 +56,21 @@ public class MainActivity extends Activity {
 				MainActivity.this.worldView.zoomIn();
 				MainActivity.this.refreshWorldView();
 			}});
-    	
+
     	bindButton(R.id.zoomOut, new OnClickListener(){
 			public void onClick(View arg0) {
 				MainActivity.this.worldView.zoomOut();
 				MainActivity.this.refreshWorldView();
 			}});
     }
-	
+
 	protected void refreshWorldView() {
 		runOnUiThread(new Runnable(){
 			public void run() {
 				MainActivity.this.worldView.invalidate();
 			}});
 	}
-	
+
 	private void startTimer() {
 		timer = new Timer();
     	TimerTask task = new TimerTask() {
@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void run() {
 				MainActivity.this.world.evolve();
-				
+
 			}};
     	timer.scheduleAtFixedRate(task, 500, 500);
 	}

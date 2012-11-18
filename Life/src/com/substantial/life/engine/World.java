@@ -16,12 +16,12 @@ public class World {
 			public void run() {}
 		};
 	}
-	
+
 	public void toggle(int x, int y) {
 		Location location = new Location(x, y);
 		toggle(location);
 	}
-	
+
 	public void set(int x, int y, boolean alive) {
 		if (isAlive(x, y) == alive)
 			return;
@@ -31,14 +31,14 @@ public class World {
 	public boolean isAlive(int x, int y) {
 		return aliveCells.contains(new Location(x,y));
 	}
-	
+
 	public void evolve() {
 		HashMap<Location, Integer> touchedCells = new HashMap<Location, Integer>();
-		
+
 		for (Location aliveCell : (ArrayList<Location>)aliveCells.clone()) {
 			touchNeighbors(touchedCells, aliveCell);
 		}
-		
+
 		ArrayList<Location> nextGeneration = new ArrayList<Location>();
 		for (Location touchedCell : touchedCells.keySet()) {
 			Integer neighborCount = touchedCells.get(touchedCell);

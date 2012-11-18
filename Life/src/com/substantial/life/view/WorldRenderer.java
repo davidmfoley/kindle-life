@@ -2,9 +2,9 @@ package com.substantial.life.view;
 
 import java.util.ArrayList;
 
-import com.substantial.life.engine.World;
-
 import android.graphics.Canvas;
+
+import com.substantial.life.engine.World;
 
 public class WorldRenderer {
 	private ArrayList<WorldViewLayer> renderLayers = new ArrayList<WorldViewLayer>();
@@ -20,6 +20,6 @@ public class WorldRenderer {
 	public void render(Canvas canvas) {
 		for (WorldViewLayer layer : renderLayers) {
 			layer.render(canvas);
-		}	
+		}
 	}
 }

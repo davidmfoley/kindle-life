@@ -1,7 +1,5 @@
 package com.substantial.life.view;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
@@ -26,25 +24,25 @@ public class WorldView extends ImageView {
 	public WorldView(Context context) {
 		super(context);
 	}
-	
-	
+
+
 	public void setWorld(World world) {
 		this.world = world;
 		gridViewRect = new GridViewRect();
 		gridViewRect.setZoom(64);
 		gridViewRect.setCenterCell(0, 0);
-		
+
 		renderer = new WorldRenderer(world, gridViewRect);
-		
-			
+
+
 		WorldTouchHandler touchHandler = new WorldTouchHandler(this.gridViewRect, this.world);
-		
+
 		gridViewRect.setOnChangeListener(new OnWorldViewChangeListener(){
 			public void onViewChange() {
-				WorldView.this.postInvalidate();				
+				WorldView.this.postInvalidate();
 			}
 		});
-		
+
 		this.setOnTouchListener(touchHandler);
 	}
 
@@ -53,9 +51,9 @@ public class WorldView extends ImageView {
 		gridViewRect.setViewSize(canvas.getWidth(), canvas.getHeight());
 		renderer.render(canvas);
 	}
-	
+
 	public void zoomToFitAll() {
-		
+
 	}
 
 	public void zoomIn() {
