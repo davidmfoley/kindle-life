@@ -9,19 +9,26 @@ public class GridViewRect {
 	private Location viewSize;
 	private LocationF centerCell;
 	private float zoomFactor;
-	private OnWorldViewChangeListener changeListener;
+	private OnWorldViewChangeListener changeListener = new OnWorldViewChangeListener(){public void onViewChange() {}};
 
 	public void setViewSize(int x, int y) {
 		viewSize = new Location(x, y);
+		changeListener.onViewChange();
 	}
 
 	public void setCenterCell(float x, float y) {
-
 		centerCell = new LocationF(x, y);
+		changeListener.onViewChange();
 	}
 
 	public void setZoom(float zoomLevel) {
 		zoomFactor = zoomLevel;
+		changeListener.onViewChange();
+	}
+
+	public void setOnChangeListener(
+			OnWorldViewChangeListener onWorldViewChangeListener) {
+		this.changeListener = onWorldViewChangeListener;
 	}
 
 	public Location cellAt(int x, int y) {
@@ -51,10 +58,5 @@ public class GridViewRect {
 		if (rawWorldPosition < 0)
 			return (int) (rawWorldPosition - 0.99);
 		return (int) rawWorldPosition;
-	}
-
-	public void setOnChangeListener(
-			OnWorldViewChangeListener onWorldViewChangeListener) {
-		this.changeListener = onWorldViewChangeListener;
 	}
 }

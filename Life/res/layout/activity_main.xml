@@ -14,7 +14,7 @@
         <com.substantial.life.view.WorldView
             android:id="@+id/worldView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
+            android:layout_height="0dip" 
             android:layout_weight="8" 
             />
 
@@ -24,13 +24,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" 
             >
+             
             <Button
           	  	android:layout_weight="1"          
                 android:id="@+id/stopStart"
-             	android:text="Stop/Start"
+             	android:text="@string/start"
              	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
                 />
+            <!-- 
             <Button
           	  	android:layout_weight="1"          
                 android:id="@+id/zoomAllTheWayOut"
@@ -38,17 +40,18 @@
              	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
                 />
+             -->
             <Button
           	  	android:layout_weight="1"          
                 android:id="@+id/zoomOut"
-             	android:text="Zoom Out"
+             	android:text="@string/zoom_out"
              	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
                 />
             <Button
           	  	android:layout_weight="1"          
                 android:id="@+id/zoomIn"
-             	android:text="Zoom In"
+             	android:text="@string/zoom_in"
              	android:layout_width="wrap_content"
             	android:layout_height="wrap_content"
                 />

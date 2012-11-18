@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import com.substantial.life.engine.World;
 import com.substantial.life.view.WorldView;
@@ -17,6 +18,7 @@ public class MainActivity extends Activity {
 	private WorldView worldView;
 	private World world;
 	private Timer timer;
+	private Button stopStartButton;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class MainActivity extends Activity {
 
         worldView = (WorldView) findViewById(R.id.worldView);
     	worldView.setWorld(world);
+
+    	stopStartButton = (Button)findViewById(R.id.stopStart);
 
     	world.setOnChangeHandler(new Runnable(){
 			public void run() {
@@ -39,17 +43,20 @@ public class MainActivity extends Activity {
 				if (timer != null) {
 					timer.cancel();
 					timer = null;
+					stopStartButton.setText(R.string.start);
 				}
 				else {
+					stopStartButton.setText(R.string.stop);
 					startTimer();
 				}
 			}});
 
-    	bindButton(R.id.zoomAllTheWayOut, new OnClickListener(){
+    	/* bindButton(R.id.zoomAllTheWayOut, new OnClickListener(){
 			public void onClick(View arg0) {
 				MainActivity.this.worldView.zoomToFitAll();
 				MainActivity.this.refreshWorldView();
 			}});
+    	*/
 
     	bindButton(R.id.zoomIn, new OnClickListener(){
 			public void onClick(View arg0) {
