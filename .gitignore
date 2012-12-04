@@ -7,3 +7,4 @@ out/
 *.dex
 local.properties
 .metadata
+.DS_Store
